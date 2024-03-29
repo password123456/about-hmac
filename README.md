@@ -57,13 +57,19 @@ Connection: close
 
 [ Response Process ]
 - The server prepares and sends the response data to the client.
-- The client verifies the HMAC integrity of the response data.
+- (Additional) If necessary, the client can verifies the HMAC integrity of the response data.
 - If the validation fails, the client rejects the response data.
+```
+Server response HMAC verification successful
+--------------
+Response timestamp: 2024-03-29T09:25:31
+Current time: 2024-03-29T09:25:31
+Time difference: 0
+```
 
 # Additional Notes
 - There's no strict rule on whether to use GET or POST; however, POST is commonly preferred for security reasons. Using GET requests can lead to all query strings being logged in web access logs
 - Always use UTC Unix Timestamp for timestamp information to ensure consistency and avoid timezone-related issues.
-- The HMAC calculation scope may vary, and it doesn't necessarily need to include the entire response body. Selective hashing of response data is possible.
 - The scope of HMAC calculation can vary. While it typically involves hashing the entire response body, selective hashing of data is also possible, especially when the response body is extensive.
 - The choice of HMAC algorithm (e.g., Hmac-SHA256, Hmac-SHA512) and the secret key length should be based on security requirements and best practices.
 
